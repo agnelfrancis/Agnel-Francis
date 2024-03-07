@@ -607,26 +607,46 @@
 
       <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
         <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-          </div>
-          <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-          </div>
+            <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+                <!-- Non-editable field for fixed subject -->
+                <input type="text" class="form-control" name="subject" id="subject" value="Feedback Form" readonly required>
+            </div>
         </div>
         <div class="form-group mt-3">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            <!-- Editable feedback paragraph -->
+            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Your feedback..." required></textarea>
         </div>
         <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
         </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
+        <div class="text-center"><button type="button" onclick="prepareEmail()">Send Message</button></div>
+    </form>
+
+    <script>
+        function prepareEmail() {
+            var name = document.getElementById('name').value;
+            var subject = document.getElementById('subject').value;
+            var message = document.getElementById('message').value;
+
+            // Encode special characters for the email body
+            var encodedName = encodeURIComponent(name);
+            var encodedSubject = encodeURIComponent(subject);
+            var encodedMessage = encodeURIComponent(message);
+
+            // Construct the mailto link with details
+            var mailtoLink = 'mailto:agnelfrancis2007@gmail.com?subject=' + encodedSubject + '&body=' + encodedName + '%0A%0A' + encodedMessage;
+
+            // Open the user's email client with the details filled in
+            window.location.href = mailtoLink;
+        }
+    </script>
+
+
 
     </div>
   </section><!-- End Contact Section -->
