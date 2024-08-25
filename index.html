@@ -1,670 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agnel Francis Olakkengil - Portfolio</title>
+    
+    <!-- Import Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Import FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Import Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
 
-  <title>Agnel Francis Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <style>
+        :root {
+            --background-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --navbar-bg: #1a1a1a;
+            --button-bg: #4a3f5f;
+            --button-hover-bg: #3e2e4c;
+            --card-bg: #2d2d2d;
+            --card-hover-bg: #3b3b3b;
+            --line-color: #1a1a1a;
+        }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        header {
+            background-color: var(--navbar-bg);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        .navbar {
+            background-color: var(--navbar-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+        .navbar-item {
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: color 0.3s, transform 0.3s;
+        }
 
-  <!-- =======================================================
-  * Template Name: Personal
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+        .navbar-item:hover {
+            color: #b3b3b3;
+            transform: scale(1.1);
+        }
+
+        .title-container {
+            text-align: center;
+            margin: 6rem 1rem 2rem;
+        }
+
+        .title-container h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .bio {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .bio p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: var(--card-hover-bg);
+        }
+
+        .project-card .card-header {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .project-card .card-content {
+            font-size: 1rem;
+            color: #d0d0d0;
+        }
+
+        .project-card .link-btn {
+            display: none;
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+            transform: translateX(100%);
+        }
+
+        .project-card:hover .link-btn {
+            display: inline-flex;
+            align-items: center;
+            transform: translateX(0);
+        }
+
+        .project-card .link-btn:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        .link-btn svg {
+            margin-left: 0.5rem;
+        }
+
+        .button {
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        .input, .textarea {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--card-bg);
+            border-radius: 8px;
+            transition: border-color 0.3s;
+            padding: 0.5rem;
+            width: 100%;
+        }
+
+        .input:focus, .textarea:focus {
+            border-color: var(--button-bg);
+            outline: none;
+        }
+
+        .timeline {
+    position: relative;
+    padding: 1rem 0;
+    margin: 1rem auto;
+    max-width: 800px;
+}
+
+.timeline-item {
+    display: flex; /* Use flexbox to align items in a row */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 0; /* Align the line to the left */
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: var(--line-color);
+    border-left: 1px dotted var(--line-color);
+}
+
+.timeline-item-icon {
+    font-size: 2rem; /* Adjust icon size */
+    color: var(--button-bg);
+    margin-right: 1rem; /* Space between icon and text */
+}
+
+.timeline-item-content {
+    flex: 1; /* Allow content to take remaining space */
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
+        padding-left: 1rem; /* Adjust padding for smaller screens */
+    }
+
+    .timeline-item-icon {
+        margin-right: 0; /* Remove margin-right on smaller screens */
+        margin-bottom: 0.5rem; /* Add margin-bottom for spacing between icon and text */
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-item {
+        padding-left: 0.5rem; /* Further adjust padding for very small screens */
+    }
+
+    .timeline-item-icon {
+        font-size: 1.5rem; /* Further adjust icon size for very small screens */
+    }
+}
+
+
+
+        .contact-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 50;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-modal-content {
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 500px;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-modal-content.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .contact-modal-button {
+            display: inline-block;
+            margin: 0;
+            padding: 0.5rem 1rem;
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .contact-modal-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        .welcome-modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 50;
+            transition: opacity 0.3s ease;
+        }
+
+        .welcome-modal-content {
+            background: #222;
+            color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: bounce-in 0.6s ease-out;
+        }
+
+        .welcome-modal-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .welcome-modal-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 0.5rem 4rem;
+            }
+
+            .title-container h1 {
+                font-size: 4rem;
+            }
+
+            .bio {
+                max-width: 900px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header class="bg-navbar-bg text-white py-4 shadow-md">
+        <nav class="flex justify-between items-center px-4">
+            <div class="text-lg font-semibold">Agnel Francis Olakkengil</div>
+            <div class="flex space-x-4">
+                <a href="#projects" class="navbar-item hover:text-gray-400">Projects</a>
+                <a href="#resume" class="navbar-item hover:text-gray-400">Resume</a>
+                <a href="#contact" class="navbar-item hover:text-gray-400" id="contact-btn">Contact</a>
+            </div>
+        </nav>
+        <div class="horizontal-line"></div>
+    </header>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container">
+    <main class="px-4 py-8">
+        <div class="title-container">
+            <h1>Agnel Francis Olakkengil</h1>
+        </div>
 
-      <h1><a href="index.html">Agnel Francis Olakkengil</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>I'm a passionate <span>graphic designer, web dev</span> from Kerala</h2>
+        <section id="bio" class="bio">
+            <p>I am currently learning Python, Tkinter, and MySQL at school, and I am also exploring HTML and various other technologies like React on my own. My passion for computers drives me to continually expand my knowledge and skills in this ever-evolving field.</p>
+        </section>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#resume">Resume</a></li>
-          <li><a class="nav-link" href="#services">Services</a></li>
-          <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+        <section id="projects">
+            <h2 class="text-2xl font-semibold text-left">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                <div class="project-card relative">
+                    <div class="card-header">Busilier</div>
+                    <div class="card-content">
+                        <p>A project developed using HTML that assists village residents in tracking bus arrival times for various routes. This application aims to streamline public transportation information and enhance accessibility.</p>
+                    </div>
+                    <a href="./projects/busilier.html" target="_blank" class="link-btn">
+                        <span>Doc</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12H3v3h12v3l6-6-6-6v3z"/></svg>
+                    </a>
+                </div>
+                <div class="project-card relative">
+                    <div class="card-header">Ente Nadu</div>
+                    <div class="card-content">
+                        <p>A collaborative project between myself and Sarvodayam School, built with React Native. It serves the local village community by providing job opportunities and various services through a user-friendly mobile app.</p>
+                    </div>
+                    <a href="./projects/entenadu.html" target="_blank" class="link-btn">
+                        <span>Doc</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12H3v3h12v3l6-6-6-6v3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-      <div class="social-links">
-        <a href="https://www.twitter.com/oslohaz_e" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="https://www.facebook.com/agnel.francis.39/" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/oslohaz_e/" class="instagram"><i class="bi bi-instagram"></i></a>
-      </div>
+        <section id="resume" class="my-8">
+            <h2 class="text-2xl font-semibold text-left">Resume</h2>
+            <div class="text-left mt-4">
+                <a href="path/to/your/resume.pdf" class="button" download="Agnel_Fancis_Resume.pdf">Download CV</a>
+            </div>
+        </section>
 
+        <section id="education" class="my-8">
+            <h2 class="text-2xl font-semibold text-left">Education</h2>
+            <div class="timeline mt-8">
+                <div class="timeline-item flex items-center">
+                    <div class="timeline-item-icon flex-shrink-0 w-8 h-8 flex items-center justify-center bg-button-bg text-white rounded-full">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="timeline-item-content ml-4">
+                        <h3 class="text-lg font-semibold">Sarvodayam VHSS Aryampdam</h3>
+                        <p>2024 - Present</p>
+                        <p>Studying various subjects including Computer Science.</p>
+                    </div>
+                </div>
+                <div class="timeline-item flex items-center mt-8">
+                    <div class="timeline-item-icon flex-shrink-0 w-8 h-8 flex items-center justify-center bg-button-bg text-white rounded-full">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-item-content ml-4">
+                        <h3 class="text-lg font-semibold">Previous School</h3>
+                        <p>2018 - 2024</p>
+                        <p>Completed primary and secondary education with a focus on technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <h3 class="text-lg font-semibold mb-4">Contact Me</h3>
+            <form>
+                <input type="text" class="input mb-4" placeholder="Your Name">
+                <input type="email" class="input mb-4" placeholder="Your Email">
+                <textarea class="textarea mb-4" rows="4" placeholder="Your Message"></textarea>
+                <button type="submit" class="button">Send</button>
+            </form>
+            <button id="close-modal" class="contact-modal-button">Close</button>
+        </div>
     </div>
-  
-  </header><!-- End Header -->
 
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-      <div class="section-title">
-        <h2>About</h2>
-        <p>Learn more about me</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="C:\Users\agnel\Music\Personal\Personal\assets\img\profile.jpg" class="img-fluid" alt="">
+    <!-- Welcome Modal -->
+    <div id="welcome-modal" class="welcome-modal">
+        <div class="welcome-modal-content">
+            <h3 class="text-lg font-semibold">Welcome to My Portfolio</h3>
+            <p>Hi, I’m Agnel Francis Olakkengil, a passionate computer enthusiast. Explore my projects, education, and get in touch!</p>
+            <button id="welcome-close" class="welcome-modal-button">Close</button>
         </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Web Developer,  &amp; Graphic Designer</h3>
-          <p class="fst-italic">
-            My Name Is Agnel Francis Olakkengil and i live in Velur, Kerala, India, I am we Designer and Developer, Not That Experienced But I Make These Things, I am a eleventh grade but I am Iproving Myself !
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>30 June 2007</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 8848 365840</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Kerala, India</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>16</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Undefined</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>agnelfrancis2007@gmail.com</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- End About Me -->
-
-    <!-- ======= Counts ======= -->
-    <div class="counts container">
-
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
-            <span data-purecounter-start="0" data-purecounter-end="141" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Happy Clients</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
-            <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-headset"></i>
-            <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-award"></i>
-            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Awards</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div><!-- End Counts -->
-
-    <!-- ======= Skills  ======= -->
-    <div class="skills container">
-
-      <div class="section-title">
-        <h2>Skills</h2>
-      </div>
-
-      <div class="row skills-content">
-
-        <div class="col-lg-6">
-
-          <div class="progress">
-            <span class="skill">HTML <i class="val">40%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">CSS <i class="val">40%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">JavaScript <i class="val">60%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="progress">
-            <span class="skill">Python <i class="val">70%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">graphics <i class="val">55%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div><!-- End Skills -->
-
-    <!-- ======= Interests ======= -->
-    <div class="interests container">
-
-      <div class="section-title">
-        <h2>Interests</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-4">
-          <div class="icon-box">
-            <i class="ri-store-line" style="color: #ffbb2c;"></i>
-            <h3>Stores</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-            <h3>Graphs</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-            <h3>Sed perspiciatis</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-          <div class="icon-box">
-            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-            <h3>Magni Dolores</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-database-2-line" style="color: #47aeff;"></i>
-            <h3>Nemo Enim</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-            <h3>Eiusmod Tempor</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-            <h3>Midela Teren</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-            <h3>Pira Neve</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-anchor-line" style="color: #b2904f;"></i>
-            <h3>Dirada Pack</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-disc-line" style="color: #b20969;"></i>
-            <h3>Moton Ideal</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-base-station-line" style="color: #ff5828;"></i>
-            <h3>Verdo Park</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-            <h3>Flavor Nivelanda</h3>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- End Interests -->
-  </section><!-- End About Section -->
-
-  <!-- ======= Resume Section ======= -->
-  <section id="resume" class="resume">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Resume</h2>
-        <p>Check My Resume</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <h3 class="resume-title">Sumary</h3>
-          <div class="resume-item pb-0">
-            <h4>Computer Aspiration</h4>
-          <p><em>From Childhood My Aspiration Was to become a Computer Specialist Later i Knew there is a job called Software Engineering which i loved to pursue and by also loving Gaphics Designing is My life !</em></p>
-          </div>
-
-          <h3 class="resume-title">Education</h3>
-          <div class="resume-item">
-            <h4>1 to 4th Standard &amp;</h4>
-            <h5>Lower Priary Education ( Indian Standard ) </h5>
-            <p><em>Sri Vigneshwara School CBSE</em></p>
-            <p>I Studied There For My First Days I Was There For My LP ( Lower Primary Edu ) For My Base </p>
-          </div>
-          <div class="resume-item">
-            <h4>5 to 10th Standard &amp;</h4>
-            <h5>Upper Primary  & High School ( Indian Standard )</h5>
-            <p><em>GRSRVHSS Velur </em></p>
-            <p>I Studied There My LP and HS there I Wrote My First Public Exam SSLC ( Secondary School Leaving Certificate ) Which Played a Pivotal Pont For My Later Educations</p>
-          </div>
-        </div>
-        <div class="resume-item">
-          <h4>11 th Standard &amp; JSD ( Junior Software Developer )</h4>
-          <h5>Higher Secondary School ( Indian Standard )</h5>
-          <p><em>GRSRVHSS Velur </em></p>
-          <p>I am Currently Studying a Vocational Skill Based Course In My 1th Grade Called JSD ( Junior Software Developer ) Its is a Computer Course And Vocation Means It is Also Skill Based, Curently Now Turning to 12th Standard</p>
-        </div>
-      </div>
-  </section><!-- End Resume Section -->
-
-  <!-- ======= Services Section ======= -->
-  <section id="services" class="services">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Services</h2>
-        <p>My Services</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4><a href="">Lorem Ipsum</a></h4>
-            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-file"></i></div>
-            <h4><a href="">Sed ut perspiciatis</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4><a href="">Magni Dolores</a></h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-world"></i></div>
-            <h4><a href="">Nemo Enim</a></h4>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-slideshow"></i></div>
-            <h4><a href="">Dele cardo</a></h4>
-            <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-arch"></i></div>
-            <h4><a href="">Divera don</a></h4>
-            <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-          </div>
-        </div>
-
-      </div>
-
     </div>
-  </section><!-- End Services Section -->
-
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Portfolio</h2>
-        <p>My Works</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
-      </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>My Address</h3>
-            <p>A108 Adam Street, New York, NY 535022</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email Me</h3>
-            <p>contact@example.com</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-phone-call"></i>
-            <h3>Call Me</h3>
-            <p>+1 5589 55488 55</p>
-          </div>
-        </div>
-      </div>
-
-      <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-            </div>
-            <div class="col-md-6 form-group mt-3 mt-md-0">
-                <!-- Non-editable field for fixed subject -->
-                <input type="text" class="form-control" name="subject" id="subject" value="Feedback Form" readonly required>
-            </div>
-        </div>
-        <div class="form-group mt-3">
-            <!-- Editable feedback paragraph -->
-            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Your feedback..." required></textarea>
-        </div>
-        <div class="my-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="button" onclick="prepareEmail()">Send Message</button></div>
-    </form>
 
     <script>
-        function prepareEmail() {
-            var name = document.getElementById('name').value;
-            var subject = document.getElementById('subject').value;
-            var message = document.getElementById('message').value;
+        // Contact Modal
+        document.getElementById('contact-btn').addEventListener('click', function() {
+            document.getElementById('contact-modal').style.display = 'flex';
+            document.querySelector('.contact-modal-content').classList.add('show');
+        });
 
-            // Encode special characters for the email body
-            var encodedName = encodeURIComponent(name);
-            var encodedSubject = encodeURIComponent(subject);
-            var encodedMessage = encodeURIComponent(message);
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.querySelector('.contact-modal-content').classList.remove('show');
+            setTimeout(() => {
+                document.getElementById('contact-modal').style.display = 'none';
+            }, 300);
+        });
 
-            // Construct the mailto link with details
-            var mailtoLink = 'mailto:agnelfrancis2007@gmail.com?subject=' + encodedSubject + '&body=' + encodedName + '%0A%0A' + encodedMessage;
+        // Welcome Modal
+        window.addEventListener('load', function() {
+            if (!localStorage.getItem('welcomeShown')) {
+                document.getElementById('welcome-modal').style.display = 'flex';
+            }
+        });
 
-            // Open the user's email client with the details filled in
-            window.location.href = mailtoLink;
-        }
+        document.getElementById('welcome-close').addEventListener('click', function() {
+            document.getElementById('welcome-modal').style.display = 'none';
+        });
     </script>
-
-
-
-    </div>
-  </section><!-- End Contact Section -->
-
-
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
 </body>
-
 </html>

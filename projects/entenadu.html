@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ente Nadu App Documentation</title>
+    
+    <!-- Import Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Import FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Import Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+
+    <style>
+        :root {
+            --background-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --button-bg: #4a3f5f;
+            --button-hover-bg: #3e2e4c;
+            --link-color: #9c8d9b;
+            --link-hover-color: #6c5b7b;
+            --modal-bg: rgba(0, 0, 0, 0.8);
+            --modal-content-bg: #333;
+            --modal-text-color: #e0e0e0;
+            --modal-button-bg: #555;
+            --modal-button-hover-bg: #777;
+            --modal-button-green: #4caf50;
+            --modal-button-red: #f44336;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 60px; /* Ensure content doesn't get hidden behind the footer */
+        }
+
+        header {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .title-container {
+            text-align: center;
+            margin: 6rem 1rem 2rem;
+        }
+
+        .title-container h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--button-bg);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .button {
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--modal-bg);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--modal-content-bg);
+            color: var(--modal-text-color);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .modal-button {
+            background-color: var(--modal-button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-button:hover {
+            background-color: var(--modal-button-hover-bg);
+        }
+
+        .modal-button.green {
+            background-color: var(--modal-button-green);
+        }
+
+        .modal-button.green:hover {
+            background-color: #388e3c;
+        }
+
+        .modal-button.red {
+            background-color: var(--modal-button-red);
+        }
+
+        .modal-button.red:hover {
+            background-color: #c62828;
+        }
+
+        .modal-button i {
+            margin-right: 0.5rem;
+        }
+
+        .links-section {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: var(--background-color);
+            border-top: 1px solid var(--text-color);
+        }
+
+        .links-section .button {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 768px) {
+            .title-container h1 {
+                font-size: 4rem;
+            }
+
+            .section {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Header content, if any -->
+    </header>
+
+    <div class="title-container">
+        <h1>Ente Nadu App Documentation</h1>
+    </div>
+
+    <div class="section">
+        <h2>Project Overview</h2>
+        <p>Ente Nadu, meaning "My Country" in English, is a revolutionary app created as part of a student-driven project aimed at enhancing community connectivity. This initiative was undertaken from October 2023 to February 2024, and we proudly present the app for public use, even though it is currently in its initial stages of development.</p>
+        <p><strong>Development Timeline:</strong> October 2023 - February 2024</p>
+        <p><strong>Current Status:</strong> The app has been officially released and can be downloaded from the <a href="https://sarvodayam.in/entenadu" target="_blank" onclick="showModal()">Ente Nadu website</a>. While it offers several functional features, it is still in the early phases of development. Full-scale development is temporarily paused due to academic pressures and other challenges, but we are committed to future enhancements.</p>
+    </div>
+
+    <div class="section">
+        <h2>Purpose and Vision</h2>
+        <p>In today's fast-paced world, technology is advancing rapidly, but many regions, particularly in India, still struggle with connectivity issues. This gap often leaves people unable to access essential services. Ente Nadu aims to bridge this divide by creating a user-friendly platform where local service providers can connect with individuals seeking their services, fostering a sense of community and improving accessibility.</p>
+    </div>
+
+    <div class="section">
+        <h2>Technology and Collaboration</h2>
+        <p>Our app leverages cutting-edge technology to ensure a seamless experience for users:</p>
+        <ul class="list-disc pl-5">
+            <li><strong>React Native:</strong> Used for cross-platform development, React Native allows us to deliver a smooth and responsive experience across both iOS and Android devices. Learn more on the <a href="https://reactnative.dev/" target="_blank" onclick="showModal()">React Native website</a>.</li>
+            <li><strong>Firebase:</strong> Provides the robust backend infrastructure needed for real-time updates and reliable performance. More details can be found on the <a href="https://firebase.google.com/" target="_blank" onclick="showModal()">Firebase website</a>.</li>
+        </ul>
+        <p>Additionally, this project is supported by Sarvodayam VHSS Aryampadam, and you can learn more about our institution on the <a href="https://sarvodayam.in/" target="_blank" onclick="showModal()">Sarvodayam VHSS website</a>.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Features</h2>
+        <ul class="list-disc pl-5">
+            <li><strong>Service Listings:</strong> Users can find local service providers easily.</li>
+            <li><strong>Community Interaction:</strong> Features for community feedback and interaction.</li>
+            <li><strong>User-Friendly Interface:</strong> Designed with simplicity and usability in mind.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Future Plans</h2>
+        <p>While Ente Nadu is in its initial phase, we have ambitious plans for future development, including:</p>
+        <ul class="list-disc pl-5">
+            <li>Enhanced features and functionalities based on user feedback.</li>
+            <li>Integration with additional local services.</li>
+            <li>Expansion to other regions.</li>
+        </ul>
+        <p>Stay tuned for updates and new features as we continue to develop and improve the app.</p>
+    </div>
+
+    <div class="links-section">
+        <h2>Links</h2>
+        <a href="https://sarvodayam.in/entenadu" target="_blank" class="button">Download App</a>
+        <a href="https://sarvodayam.in/" target="_blank" class="button">School Website</a>
+        <a href="https://github.com/Sarvodayam-VHSS/entenadu" target="_blank" class="button">Source Code</a>
+    </div>
+
+    <div class="footer">
+        <p>An initiative by <a href="https://sarvodayam.in/" target="_blank" style="color: var(--link-color);">Sarvodayam VHSS Aryampadam</a></p>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <h2>Information</h2>
+            <p id="modalContent">This is the modal content.</p>
+            <button class="modal-button green" onclick="closeModal()"><i class="fas fa-check"></i> OK</button>
+            <button class="modal-button red" onclick="closeModal()"><i class="fas fa-times"></i> Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

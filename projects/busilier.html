@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bussily - Velur Bus Routes</title>
+    
+    <!-- Import Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Import FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Import Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+
+    <style>
+        :root {
+            --background-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --button-bg: #4a3f5f;
+            --button-hover-bg: #3e2e4c;
+            --link-color: #9c8d9b;
+            --link-hover-color: #6c5b7b;
+            --modal-bg: rgba(0, 0, 0, 0.8);
+            --modal-content-bg: #333;
+            --modal-text-color: #e0e0e0;
+            --modal-button-bg: #555;
+            --modal-button-hover-bg: #777;
+            --modal-button-green: #4caf50;
+            --modal-button-red: #f44336;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 60px; /* Ensure content doesn't get hidden behind the footer */
+        }
+
+        header {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .title-container {
+            text-align: center;
+            margin: 6rem 1rem 2rem;
+        }
+
+        .title-container h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--button-bg);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .button {
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--modal-bg);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--modal-content-bg);
+            color: var(--modal-text-color);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .modal-button {
+            background-color: var(--modal-button-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-button:hover {
+            background-color: var(--modal-button-hover-bg);
+        }
+
+        .modal-button.green {
+            background-color: var(--modal-button-green);
+        }
+
+        .modal-button.green:hover {
+            background-color: #388e3c;
+        }
+
+        .modal-button.red {
+            background-color: var(--modal-button-red);
+        }
+
+        .modal-button.red:hover {
+            background-color: #c62828;
+        }
+
+        .modal-button i {
+            margin-right: 0.5rem;
+        }
+
+        .links-section {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: var(--background-color);
+            border-top: 1px solid var(--text-color);
+        }
+
+        .links-section .button {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .links-section .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 768px) {
+            .title-container h1 {
+                font-size: 4rem;
+            }
+
+            .section {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Header content, if any -->
+    </header>
+
+    <div class="title-container">
+        <h1>Bussily - Velur Bus Routes</h1>
+    </div>
+
+    <div class="section">
+        <h2>Project Overview</h2>
+        <p>Bussily is designed to help residents of Velur navigate local bus routes with ease. This initiative provides real-time information on bus schedules, route details, and upcoming buses to make commuting more convenient. Launched in August 2024, the app is still in its early stages, and we are committed to continuous improvement based on user feedback.</p>
+    </div>
+
+    <div class="section">
+        <h2>Purpose and Vision</h2>
+        <p>The aim of Bussily is to bridge the gap in public transportation information, especially in areas with limited access. Our goal is to offer a reliable platform where users can quickly find bus routes, schedules, and related information to enhance their daily commute and overall travel experience.</p>
+    </div>
+
+    <div class="section">
+        <h2>Technology and Collaboration</h2>
+        <p>Bussily utilizes modern technologies to ensure a smooth user experience:</p>
+        <ul class="list-disc pl-5">
+            <li><strong>React Native:</strong> For cross-platform development, ensuring consistency across iOS and Android devices. Learn more on the <a href="https://reactnative.dev/" target="_blank" onclick="showModal()">React Native website</a>.</li>
+            <li><strong>Firebase:</strong> Powers real-time updates and robust performance. Details are available on the <a href="https://firebase.google.com/" target="_blank" onclick="showModal()">Firebase website</a>.</li>
+        </ul>
+        <p>Supported by local community efforts, you can find more information on our <a href="https://bussily.in/" target="_blank" onclick="showModal()">official site</a>.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Features</h2>
+        <ul class="list-disc pl-5">
+            <li><strong>Bus Schedules:</strong> View real-time bus schedules and timings.</li>
+            <li><strong>Route Details:</strong> Detailed information about bus routes and stops.</li>
+            <li><strong>Upcoming Buses:</strong> See the next four upcoming buses for your convenience.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Future Plans</h2>
+        <p>We plan to expand Bussily's features and functionalities, including:</p>
+        <ul class="list-disc pl-5">
+            <li>Integration with additional bus routes and schedules.</li>
+            <li>Enhanced user interface and experience based on feedback.</li>
+            <li>Partnerships with local transportation providers for better service.</li>
+        </ul>
+    </div>
+
+    <div class="links-section">
+        <div class="button-container">
+            <a href="index.html" class="button">
+                <i class="fas fa-eye"></i> View Site
+            </a>
+            <a href="source.html" class="button">
+                <i class="fas fa-code"></i> Source Code
+            </a>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>More Information</h2>
+            <p>For further details, visit the respective websites.</p>
+            <div class="modal-button-container">
+                <button class="modal-button green" onclick="window.location.href='https://reactnative.dev/'">
+                    <i class="fas fa-arrow-right"></i> React Native
+                </button>
+                <button class="modal-button green" onclick="window.location.href='https://firebase.google.com/'">
+                    <i class="fas fa-arrow-right"></i> Firebase
+                </button>
+                <button class="modal-button green" onclick="window.location.href='https://bussily.in/'">
+                    <i class="fas fa-arrow-right"></i> Bussily Official Site
+                </button>
+                <button class="modal-button red" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Made with ❤️ by Agnel Francis</p>
+    </footer>
+
+    <script>
+        function showModal() {
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
