@@ -56,6 +56,8 @@ Agnel-Francis/
 │   ├── entenadu.html       # Example project page 1
 │   └── busilier.html       # Example project page 2
 
+## Contributing
+
 If you have suggestions or would like to contribute to improving this portfolio website, feel free to fork the repository and submit a pull request. All contributions are welcome!
 
 ## License
