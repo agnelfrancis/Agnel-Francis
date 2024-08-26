@@ -8,7 +8,6 @@ Welcome to the repository for my personal portfolio website. This repository con
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Getting Started](#getting-started)
-- [File Structure](#file-structure)
 - [Contributing](#contributing)
 - [License](#license)
 
