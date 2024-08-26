@@ -39,22 +39,12 @@ To view or edit the website locally, follow these steps:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/agnelfrancis/Agnel-Francis.git
-Navigate to the Project Directory:
-bash
-Copy code
-cd Agnel-Francis
+   
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd Agnel-Francis
 Open the index.html file in your browser: Simply double-click on the index.html file or open it with a web browser to view the site locally.
 
-
-## File Structure
-
-Agnel-Francis/
-│
-├── index.html              # The main homepage of the portfolio
-├── blog.html               # The blog section
-├── projects/               # Directory containing project-related files
-│   ├── entenadu.html       # Example project page 1
-│   └── busilier.html       # Example project page 2
 
 ## Contributing
 
