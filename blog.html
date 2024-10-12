@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Agnel Francis Olakkengil</title>
-    
-    <!-- Import Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Import FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Import Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+    <title>My Blog</title>
+
+    <!-- Import DM Sans font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --background-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --navbar-bg: #1a1a1a;
-            --button-bg: #4a3f5f;
-            --button-hover-bg: #3e2e4c;
-            --card-bg: #2d2d2d;
-            --card-hover-bg: #3b3b3b;
-            --line-color: #1a1a1a;
+            --background-color: #000000; /* Black background */
+            --text-color: #ffffff; /* White text color */
+            --card-bg: #1a1a1a; /* Dark gray for cards */
+            --card-hover-bg: #333333; /* Slightly lighter gray on hover */
+            --modal-bg: rgba(30, 30, 30, 0.95);
+            --modal-content-bg: #1a1a1a; /* Dark gray modal background */
+            --highlight-color: #6a6ae6; /* A nice purple color for highlights */
         }
 
         body {
@@ -34,107 +30,257 @@
             padding: 0;
         }
 
-        header {
-            background-color: var(--navbar-bg);
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-        }
-
-        .navbar-item {
-            color: var(--text-color);
-            font-size: 1rem;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .navbar-item:hover {
-            color: #b3b3b3;
-            transform: scale(1.1);
-        }
-
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
+        .title-container {
             text-align: center;
+            margin: 2rem 1rem;
         }
 
-        .content-container h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .content-container p {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-        }
-
-        .icon-container {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .icon-container .icon {
+        .title-container h1 {
             font-size: 3rem;
-            color: var(--button-bg);
-            transition: color 0.3s, transform 0.3s;
+            color: var(--highlight-color);
+            font-weight: bold;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.1);
         }
 
-        .icon-container .icon:hover {
-            color: var(--button-hover-bg);
-            transform: scale(1.2);
+        .blog-container {
+            margin: 2rem auto;
+            max-width: 1000px;
+            padding: 1rem;
         }
 
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s, transform 0.2s;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
+        .blog-post {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid transparent; /* Left border for hover effect */
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
-            transform: scale(1.05);
+        .blog-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+            background-color: var(--card-hover-bg);
+            border-left-color: var(--highlight-color); /* Change border color on hover */
+        }
+
+        .blog-post h2 {
+            color: var(--highlight-color);
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post p {
+            color: #dddddd;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .blog-post .date {
+            font-size: 0.875rem;
+            color: #aaaaaa;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-posts {
+            color: #b3b3b3;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--modal-bg);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: var(--modal-content-bg);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out; /* Modal fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px; /* Rounded corners for images */
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Image shadow */
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            margin: 1rem 0;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #dddddd;
+            line-height: 1.8;
+        }
+
+        .close-btn {
+            color: var(--text-color);
+            font-size: 30px;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #b3b3b3;
+        }
+
+        @media (min-width: 768px) {
+            .title-container h1 {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-
-    <div class="content-container">
-        <h1><i class="fas fa-blog"></i> Blog</h1>
-        <p>We're working hard on something amazing! Stay tuned for upcoming blog posts.</p>
-
-        <div class="icon-container">
-            <i class="fas fa-pencil-alt icon"></i>
-            <i class="fas fa-code icon"></i>
-            <i class="fas fa-lightbulb icon"></i>
-            <i class="fas fa-cog icon"></i>
-        </div>
-
-        <a href="index.html" class="button">
-            Go Back to Home
-        </a>
+    <div class="title-container">
+        <h1>My Blog</h1>
     </div>
+
+    <div class="blog-container" id="blog-container">
+        <!-- Blog posts or 'No posts available' message will appear here -->
+    </div>
+
+    <!-- Modal for full blog details -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-image-container"></div>
+            <p id="modal-content"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase configuration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAWG_pWxeIgb7dhkUpMfdDc6iiXmKJsy3A",
+            authDomain: "agnel-portfolio.firebaseapp.com",
+            projectId: "agnel-portfolio",
+            storageBucket: "agnel-portfolio.appspot.com",
+            messagingSenderId: "37118407869",
+            appId: "1:37118407869:web:b5dd596424d2a8fdcf73d4",
+            measurementId: "G-9PPYWD7FE4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const blogCollection = collection(db, 'blog');
+
+        // Reference elements
+        const blogContainer = document.getElementById('blog-container');
+        const modal = document.getElementById('modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const modalImageContainer = document.getElementById('modal-image-container');
+
+        // Function to open modal with blog details
+        window.openModal = function(post) { // Make it globally accessible
+            modalTitle.innerText = post.title;
+            modalContent.innerText = post.content;
+
+            // If image URL exists, display it
+            if (post.imageUrl) {
+                modalImageContainer.innerHTML = `<img src="${post.imageUrl}" alt="Blog image">`;
+            } else {
+                modalImageContainer.innerHTML = ''; // No image
+            }
+
+            modal.style.display = 'block';
+        };
+
+        // Close modal
+        closeModalBtn.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Fetch and display blog posts
+        async function fetchPosts() {
+            const querySnapshot = await getDocs(blogCollection);
+            if (querySnapshot.empty) {
+                blogContainer.innerHTML = '<p class="no-posts">No posts available</p>';
+            } else {
+                querySnapshot.forEach((doc) => {
+                    const post = doc.data();
+                    const postDate = post.date ? post.date.toDate().toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    }) : 'Unknown Date'; // Format date
+
+                    // Create blog post element
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('blog-post');
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p class="date">${postDate}</p>
+                        <p>${post.content.substring(0, 100)}... <strong>Read more</strong></p>
+                    `;
+
+                    // Add click event to open modal
+                    postElement.onclick = () => {
+                        openModal(post);
+                    };
+
+                    blogContainer.appendChild(postElement);
+                });
+            }
+        }
+
+        // Call function to fetch posts
+        fetchPosts();
+    </script>
 </body>
+
 </html>
